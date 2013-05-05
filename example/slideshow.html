@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <!--[if lt IE 9]><script src="../lib/html5shim.js"></script><![endif]-->  
+  
+  <!-- These are some core styles the slideshow app requires -->
+  <link href='http://fonts.googleapis.com/css?family=Doppio+One' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="../lib/styles.css" />
+  
+  <!-- These are the styles you'll add to make the slides look great -->
+  <link rel="stylesheet" href="css/styles.css" />
+  
+  <title>RIA? ARIA!</title>
+</head>
+<body>
+  <header>
+    <h1>Example Slide Show</h1>
+    <nav>
+      <ul>
+        <li><button id="prev-btn" title="Previous slide">Previous Slide</button></li>
+        <li><span id="slide-number"></span>/<span id="slide-total"></span></li>
+        <li><button id="next-btn" title="Next Slide">Next Slide</button></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="deck">
+    <section class="title">
+  		<h1>RIA? ARIA!</h1>
+    </section>
+
+    <section class="intro">
+      <h1>이 페이지의 레이어 팝업. 접근성이 있을까요?</h1>
+  		<p><img src="i/1.png" alt="N스토어 메인 페이지" /></p>
+    </section>
+    <section class="intro">
+      <h1>해결책!?</h1>
+  		<p><img src="i/2.gif" alt="복잡한 문제" /></p>
+    </section>
+    <section class="intro">
+      <h1>복잡하니 찬찬히 하나씩 살펴보아요.</h1>
+  		<p><img src="i/3.jpg" alt="" /></p>
+    </section>
+
+    <section class="myself">
+      <h1>저는&hellip;</h1>
+  		<img src="i/4.jpeg" alt="" />
+      <ul>
+        <li><a href="http://miya.pe.kr">김군우</a> (a.k.a 겨미겨미)</li>
+        <li>SK planet 소속. <a href="https://developers.skplanetx.com/apidoc/kor/comment/">댓글 플러그인</a> 개발 중.</li>
+        <li>오픈소스 <a href="http://openwax.miya.pe.kr">OpenWAX</a> 개발</li>
+        <li><a href="http://kwag.net/">KWAG</a>,
+          <a href="http://www.wah.or.kr/Consulting/consultList.asp">웹 접근성 연구소 자문게시판</a>,
+          <a href="http://mctenshi.tumblr.com/">개인블로그</a> 등에서 접근성 관련 활동 중</li>
+      </ul>
+    </section>
+
+    <section class="problem">
+      <h1>레이어 팝업의 접근성 문제를 해결하려면?</h1>
+  		<p><img src="i/1.png" alt="N스토어 메인 페이지" /></p>
+    </section>
+    <section class="problem">
+      <h1>해결해야 하는 문제 정리</h1>
+      <ul>
+        <li>키보드 접근성</li>
+        <li>사용자의 요구에 따른 실행</li>
+        <li>스크린리더</h1>
+      </ul>
+    </section>
+
+    <section class="kbd cover">
+      <p>키보드 접근성</p>
+    </section>
+    <section class="kbd">
+      <h1>키보드 접근성 - 접근성 고려 없는 레이어 팝업</h1>
+  		<iframe src="tests/kbd1.html" title="접근성 고려 없는 레이어 팝업 예시"></iframe>
+    </section>
+    <section class="kbd">
+      <h1>키보드 접근성 - 키보드 초점을 고려</h1>
+  		<iframe src="tests/kbd2.html" title="키보드 초점을 고려한 레이어 팝업 예시"></iframe>
+    </section>
+    <section class="kbd">
+      <h1>키보드 접근성 - 초점을 레이어 팝업 안에 가두기</h1>
+  		<iframe src="tests/kbd3.html" title="초점을 레이어 팝업 안에 가두기 예시"></iframe>
+    </section>
+    <section class="kbd">
+      <h1>키보드 접근성 - 레이어 닫을 때 초점 호출 버튼으로 돌려주기</h1>
+  		<iframe src="tests/kbd4.html" title="레이어 닫을 때 초점 호출 버튼으로 돌려주기 예시"></iframe>
+    </section>
+    <section class="kbd">
+      <h1>키보드 접근성</h1>
+  		<p><img alt="Mission Complete" src="i/5.jpeg" width="700" /></p>
+    </section>
+
+    <section class="demand cover">
+      <p>사용자의 요구에 따른 실행</p>
+    </section>
+    <section class="demand">
+      <h1>사용자의 요구에 따른 실행</h1>
+      <p class="q">버튼을 눌러서 레이어 팝업을 표시한 경우?</p>
+    </section>
+    <section class="demand">
+      <h1>사용자의 요구에 따른 실행</h1>
+      <p class="q">페이지 진입 시 뜬 경우?</p>
+    </section>
+
+    <section class="reader cover">
+      <p>스크린리더</p>
+    </section>
+    <section class="reader">
+      <h1>스크린리더 - JAWS 13</h1>
+      <p class="test">실행 테스트</p>
+    </section>
+    <section class="reader">
+      <h1>WAI-ARIA</h1>
+      <pre><code>&lt;button type="button" id="open_popup"&gt;레이어 팝업 열기&lt;/button&gt;
+
+&hellip;
+&hellip;
+&hellip;
+
+&lt;div id="popup" <b>role="dialog" aria-labelledby="popup_title"</b>&gt;
+  &lt;h2 id="popup_title"&gt;중요공지&lt;/h2&gt;
+  &hellip;
+&lt;/div&gt;</code></pre>
+    </section>
+    <section class="reader">
+      <h1>WAI-ARIA 적용된 예제 - JAWS 13</h1>
+      <p class="test">실행 테스트</p>
+    </section>
+    <section class="reader">
+      <h1>WAI-ARIA 적용된 예제 - 센스리더</h1>
+      <p class="test">실행 테스트</p>
+    </section>
+
+    <section class="outro">
+      <h1>이해는 하겠는데&hellip; 그래도 너무 복잡하다?</h1>
+      <p><img alt="" src="i/6.jpg" class="toohard"></p>
+    </section>
+    <section class="outro jqueryui">
+      <h1>WAI-ARIA 규격을 지켜 제작된 jQuery UI를 사용하세요.</h1>
+      <p><img alt="" src="i/7.png"></p>
+      <ul>
+        <li>Dialog (레이어 팝업)</li>
+        <li>탭, 아코디언</li>
+        <li>자동완성</li>
+        <li>메뉴</li>
+        <li>&hellip;</li>
+      </ul>
+    </section>
+
+    <section class="end">
+      <h1>3줄 요약</h1>
+      <ul>
+        <li>자바스크립트로 만든 UI는 키보드, 스크린리더 테스트를!</li>
+        <li>어떻게 구현해야 할지 모르겠다면 WAI-ARIA 규격을 참고한다.</li>
+        <li>그마저도 어렵다면 접근성 있게 만들어놓은 라이브러리를 활용한다.</li>
+      </ul>
+    </section>
+  </div>
+  <!-- /deck -->
+  <script src="../lib/jquery-1.5.2.min.js"></script>
+  <script src="../lib/jquery.jswipe-0.1.2.js"></script>  
+  <script src="../lib/htmlSlides.js"></script>
+  <script>
+    //Do our business when the DOM is ready for us
+    $(function() {
+      
+      //You can trigger Javascript based on the slide number like this:
+      $('html').bind('newSlide', function(e, id) { 
+        switch(id) {
+          case 2:
+            console.log('This is the second slide.');;
+            break;
+          case 3:
+            console.log('Hello, third slide.');
+            break;
+        }
+      });
+
+      //One little option: hideToolbar (boolean; default = false)
+      htmlSlides.init({ hideToolbar: true });
+      
+    });
+  </script>
+  </body>
+</html>

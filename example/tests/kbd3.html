@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <title>키보드 초점을 레이어 팝업 안에 가두기 - 레이어 팝업 키보드 접근성 테스트</title>
+  <style>
+  body{margin:0;padding:10px 10px 10px 120px;font:1em/1.2 Georgia,'나눔고딕',NanumGothic,serif}
+  *:focus{outline:solid 8px #f00;}
+  h1{font-size:2.5em}
+  h2{font-size:2em}
+  img{position:absolute;top:40px;left:20px;border-radius:50px}
+  #popup {
+    display: none;
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    width: 400px;
+    height: 400px;
+    padding: 10px;
+    border: solid 1px #000;
+    background: #ddd;
+  }
+  #key {
+    position: absolute;
+    top: -80px;
+    right: 0;
+    padding: 20px;
+    background: #666;
+    color: #fff;
+    font-size: 30px;
+  }
+  #key.show {
+    top: 0;
+  }
+  #key.remove {
+    transition: all 500ms cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    top: -80px;
+  }
+  </style>
+</head>
+<body>
+
+<button type="button" id="open_popup">레이어 팝업 열기</button>
+
+<header>
+  <h1>겨미겨미</h1>
+  <img alt="" src="http://www.gravatar.com/avatar/a4daae50909fa9f70f611afec03238a8">
+  <p>저는 1999년부터 웹 개발을 해온 한국 웹 전문가입니다.</p>
+</header>
+
+<h2>다음 링크들에서 활동중입니다.</h2>
+<ul>
+  <li><a href="http://facebook.com/mctenshi">Facebook</a></li>
+  <li><a href="http://twitter.com/mctenshi">Twitter</a></li>
+  <li><a href="http://github.com/mctenshi">GitHub</a></li>
+  <li><a href="http://mctenshi.tumblr.com">Tumblr</a></li>
+  <li><a href="http://wordpress.miya.pe.kr">Wordpress</a> &dash; won't update anymore.</li>
+</ul>
+
+<h2>프로젝트</h2>
+<ul>
+  <li><a href="http://openwax.miya.pe.kr">OpenWAX</a>, an open source accessibility evaluation tool.</li>
+  <li><a href="https://github.com/mctenshi/Inline-Translator">Inline Translator</a>, an open source web based simple
+    translation tool. (because of Google and Microsoft translation API policy, I stopped development this tool.)</li>
+  <li><a href="http://nrj.miya.pe.kr">Market conditions of Noryangjin fish market</a></li>
+</ul>
+
+<div id="popup">
+  <h2>중요공지</h2>
+  <p><a href="#">국내 10대 그룹</a>의 웹 접근성 평가를 두고 <a href="#">인증기관</a> 간에 서로 엇갈린 결과를 도출해 논란이 일고 있다.</p>
+  <p>'국내 10대 <a href="#">대기업 그룹 홈페이지</a>의 웹 접근성이 미흡해 여전히 장애인들이 이용하기 어렵다'는 주장과 '웹 접근성에 큰 문제 없다'는 주장이 부딪히고 있는 것이다.</p>
+  <button type="button">확인</button>
+</div>
+
+<div id="key"></div>
+
+<script src="jquery.js"></script>
+<script>
+$('#open_popup').on('click', function (e) {
+  $('#popup').toggle();
+  if ($('#popup').is(':visible')) {
+    $('#popup a:first').focus();
+  }
+});
+$('#popup button').on('click', function (e) {
+  $('#popup').hide();
+});
+
+var shiftPressed = false, KEY_SHIFT = 16, KEY_TAB = 9;
+$(document).on('keyup', function (e) {
+  if (e.keyCode === KEY_SHIFT) shiftPressed = false;
+}).on('keydown', function (e) {
+  if (e.keyCode === KEY_SHIFT) shiftPressed = true;
+  if (shiftPressed && e.keyCode === KEY_TAB && e.target === $('#popup a:first').get(0)) {
+    $('#popup button').focus();
+    e.preventDefault();
+  } else if (!shiftPressed && e.keyCode === KEY_TAB && e.target === $('#popup button').get(0)) {
+    $('#popup a:first').focus();
+    e.preventDefault();
+  }
+});
+
+var KEY_TAB = 9, KEY_ENTER = 13, KEY_SHIFT = 16, shiftPressed = false,
+    keyPressed = function (key) {
+      $('#key').addClass('show').text(key);
+      setTimeout(function () {
+        $('#key').addClass('remove');
+      }, 500);
+      setTimeout(function () {
+        $('#key').removeClass('show remove');
+      }, 1000);
+    };
+$(window).on('keydown', function (e) {
+  var key = e.keyCode;
+  if (key === KEY_SHIFT) {
+    shiftPressed = true;
+  }
+}).on('keyup', function (e) {
+  var key = e.keyCode;
+  if (key === KEY_SHIFT) {
+    shiftPressed = false;
+  }
+  if (key === KEY_TAB && shiftPressed) {
+    keyPressed('Shift+Tab');
+  } else if (key === KEY_TAB) {
+    keyPressed('Tab');
+  } else if (key === KEY_ENTER) {
+    keyPressed('Enter');
+  }
+});
+</script>
+
+</body>
+</html>
