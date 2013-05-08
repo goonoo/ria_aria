@@ -3,24 +3,7 @@
 <head>
   <meta charset="utf-8">
   <title>WAI-ARIA 적용된 레이어 팝업 - 레이어 팝업 키보드 접근성 테스트</title>
-  <style>
-  body{margin:0;padding:10px 10px 10px 120px;font:1em/1.2 Georgia,'나눔고딕',NanumGothic,serif}
-  *:focus{outline:solid 8px #f00;}
-  h1{font-size:2.5em}
-  h2{font-size:2em}
-  img{position:absolute;top:40px;left:20px;border-radius:50px}
-  #popup {
-    display: none;
-    position: absolute;
-    top: 100px;
-    left: 150px;
-    width: 400px;
-    height: 400px;
-    padding: 10px;
-    border: solid 1px #000;
-    background: #ddd;
-  }
-  </style>
+  <link rel="stylesheet" href="c.css" />
 </head>
 <body>
 
@@ -56,7 +39,10 @@
   <button type="button">확인</button>
 </div>
 
+<div id="key"></div>
+
 <script src="jquery.js"></script>
+<script src="keyPressed.js"></script>
 <script>
 $('#open_popup').on('click', function (e) {
   $('#popup').toggle();

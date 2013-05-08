@@ -121,6 +121,21 @@ section.cover p {
 section.kbd.cover {
   background: #400;
 }
+section.kbd.cover::before {
+  opacity: .3;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #400 url(../i/kbd.jpg);
+  background-size: 100%;
+}
+section.kbd.cover p {
+  position: relative;
+  z-index: 1;
+}
 section.kbd h1 {
   z-index: 1;
   opacity: .8;
