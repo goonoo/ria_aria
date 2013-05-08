@@ -242,6 +242,24 @@ section.outro.jqueryui li {
   color: #fff;
   font-size: 40px;
 }
+section.outro.jqueryui p.iframeex {
+  position: absolute;
+  top: 490px;
+  left: 480px;
+  width: 560px;
+  padding: 5px 0;
+  text-align: center;
+  color: #b24926;
+  background: #eee;
+}
+section.outro.jqueryui iframe {
+  position: absolute;
+  top: 130px;
+  left: 480px;
+  width: 550px;
+  height: 350px;
+  border-color: #eee;
+}
 
 section.end h1 {
   z-index: 1;
@@ -262,5 +280,5 @@ section.end ul {
 }
 section.end li {
   padding: 0 0 20px;
-  font-size: 35px;
+  font-size: 40px;
 }
